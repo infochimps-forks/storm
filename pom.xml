@@ -286,12 +286,18 @@
 
     </profiles>
 
+    <!-- Infochimps s3 repository urls -->
     <distributionManagement>
-        <site>
-            <id>storm.maven.website</id>
-            <name>Storm Website</name>
-            <url>file:///tmp/site</url>
-        </site>
+      <repository>
+	<id>infochimps.releases</id>
+	<name>Infochimps Internal Repository</name>
+	<url>s3://srp-7.0/maven-s3p/releases</url>
+      </repository>
+      <snapshotRepository>
+	<id>infochimps.snapshots</id>
+	<name>Infochimps Internal Snapshot Repository</name>
+	<url>s3://srp-7.0/maven-s3p/releases</url>
+      </snapshotRepository>
     </distributionManagement>
 
     <dependencyManagement>
@@ -566,6 +572,14 @@
     </repositories>
 
     <build>
+      <!-- Extension to push/pull to Infochimps s3 repository -->
+      <extensions>
+	<extension>
+	  <groupId>org.kuali.maven.wagons</groupId>
+	  <artifactId>maven-s3-wagon</artifactId>
+	  <version>1.2.1</version>
+	</extension>
+      </extensions>
 
         <pluginManagement>
             <plugins>
